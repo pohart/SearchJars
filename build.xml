@@ -25,13 +25,13 @@
 		</jar>
 	</target>
 	<target name="package-source">
-		<jar destFile="SearchJars-src.jar">
+		<zip destFile="SearchJars-src.jar">
 			<fileset dir="..">
 				<include name="${pwd}/${src}/**"/>
 				<include name="${pwd}/build.xml"/>
 				<include name="${pwd}/README" />
 			</fileset>
-		</jar>
+		</zip>
 	</target>
 	<target name="clean">
 		<delete defaultexcludes="off" includeemptydirs="true" quiet="true">

@@ -1,0 +1,11 @@
+to run the application run java -jar SearchJars.jar
+
+if you have downloaded the source:
+
+to compile just run 
+	ant jar
+to generate the source jar 
+	ant package-source
+
+
+

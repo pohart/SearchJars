@@ -91,10 +91,10 @@ public class SearchJars extends JFrame {
         }
     };
 
-    private final JFileChooser m_jlstChooser = new JFileChooser();
-
-    private final JFileChooser m_jarChooser = new JFileChooser();
-    private final JFileChooser m_dirChooser = new JFileChooser();
+    private final JFileChooser m_jlstChooser;
+                                            ;
+    private final JFileChooser m_jarChooser;
+    private final JFileChooser m_dirChooser;
 
     protected void doExit() {
         if (JOptionPane.showConfirmDialog(this,
@@ -104,7 +104,10 @@ public class SearchJars extends JFrame {
         }
     }
 
-    public SearchJars() {
+    public SearchJars(File startDirectory) { 
+	m_jlstChooser = new JFileChooser(startDirectory);
+	m_jarChooser = new JFileChooser(startDirectory);
+	m_dirChooser = new JFileChooser(startDirectory);
         this.getContentPane().add(m_pnlMain);
         try {
             this.setIconImage(ImageIO.read(getClass().getClassLoader().getResourceAsStream("SearchJars.svg")));
@@ -681,20 +684,23 @@ public class SearchJars extends JFrame {
      * @param args
      */
     public static void main(final String[] args) {
+        final File startDir;
         if (args.length > 0) {
-
+            startDir = new File(args[0]);
+        } else {
+            startDir = java.nio.file.Paths.get("").toAbsolutePath().toFile();
         }
         SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                createAndShowGui();
+                createAndShowGui(startDir);
             }
         });
     }
 
-    protected static void createAndShowGui() {
-        final JFrame appFrame = new SearchJars();
+    protected static void createAndShowGui(File startDir) {
+        final JFrame appFrame = new SearchJars(startDir);
         appFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         appFrame.setPreferredSize(new Dimension(800, 600));
         appFrame.pack();

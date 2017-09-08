@@ -1,3 +1,10 @@
+
 to run the application use ./gradlew run
 
+or create a distribution with ./gradlew dist[Tar|Zip]
+
+
+SearchJars is a swing application that allows you to look for a particular class in a jar file or set of jar files.
+
+It will recursively look inside directorys and all java archive files (jar,ear,war) to allow you to easily find classes wherever they are in your hierarchy
 

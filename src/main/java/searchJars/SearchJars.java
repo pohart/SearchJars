@@ -33,6 +33,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -105,6 +106,11 @@ public class SearchJars extends JFrame {
 
     public SearchJars() {
         this.getContentPane().add(m_pnlMain);
+        try {
+            this.setIconImage(ImageIO.read(getClass().getClassLoader().getResourceAsStream("SearchJars.svg")));
+        } catch (final IOException e1) {
+            throw new RuntimeException(e1);
+        }
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(final WindowEvent e) {
